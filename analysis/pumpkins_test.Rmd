@@ -1,0 +1,71 @@
+---
+title: "Reproducibility example: pumpkins"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(here)
+library(tidyverse)
+```
+
+## Introduction
+This is a tutorial class to practice on R Markdowns using the Pumpkins data set.
+
+Question: Write some text here about what you are doing. Show the code for reading in the `pumpkins.csv` file.
+
+Answer:
+```{r code_block1}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+# read the pumpkins csv file
+pumpkins <- read.csv("C:/Users/DELL/Desktop/LIFE4138/Wk_6/R assessment/pumpkins.csv")
+```
+
+## Converting
+
+Question: Write a **function** to alter the weight in pounds to kg. Demonstrate the code below. Then convert the weight and create **a new** column called `weight_kg`
+
+Answer:
+```{r code_block2}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
+#convert the pumpkins dataset to a tibble
+as_tibble(pumpkins)
+#convert weight in lbs to kg
+pumpkins$weight_lbs*0.453592
+#create a new column called weight_kg
+pumpkins$weight_kg <-  pumpkins$weight_lbs*0.453592
+```
+
+## A pumpkin plot
+
+Question: Here I want you to plot the relationship between the actual weight and the estimated weight. Both axes have to be in the same units - it is up to you whether it is lbs or kg but remember to write some text explaining this.
+
+Answer:
+```{r code_block3}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
+#a plot showing the relationship between actual weight and estimated weight
+ggplot(pumpkins, aes(weight_lbs, est_weight)) + geom_point()
+```
+
+Question: **Also** explain what the plot shows and whether there are outliers
+Answer: The plot shows a linear relationship between the actual weight of pumpkins and estimated weight with two outliers in the estimated weight not correlating to the actual weight.
+
+## Some pumpkin queries
+
+Question: Which pumpkin is the heaviest? Where was it grown and in what year? Show the code below and make sure you return **only the top hit** - nb. `print(n = 1)` will help here.
+
+## Pumpkins in the US and UK
+
+Filter your dataset to include only pumpkins from the UK and US. The code below is intended as a hint:
+
+```{r code_block4, echo = TRUE, eval = FALSE}
+filter(country == "A" | country == "B") 
+```
+
+Now draw a `ggplot2` boxplot of the weight distributions in the two countries - which country tends to have heavier pumpkins?
+
+
+
